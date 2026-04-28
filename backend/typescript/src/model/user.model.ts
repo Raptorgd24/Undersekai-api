@@ -10,7 +10,7 @@ export const UserModel = new EntitySchema<User>({
             type: String,
             primary: true
         },
-        nom: {
+        username: {
             type: String
         },
         cognom: {

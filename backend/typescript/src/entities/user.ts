@@ -9,40 +9,28 @@ export class User implements Entity {
         readonly password: string,
         readonly isAdmin: boolean,
         readonly createdAt: Date,
-        readonly UpdatedAt: Date,
-        readonly DeletedAt: Date
+        readonly updatedAt: Date,
+        readonly deletedAt: Date
     ) {}
 
-    getPrimitive () {
-        return {
-            id: this.id,
-            nom: this.username,
-            email: this.email,
-            password: this.password,
-            isAdmin: this.isAdmin,
-           createdAt: this.createdAt,
-           UpdatedAt: this.UpdatedAt
-        }
-    }
 
-    static create (id: string, username: string, email: string, password: string, isAdmin: boolean, createdAt: Date, UpdatedAt: Date, DeletedAt: Date): User {
-        return new User(id, username, email, password, isAdmin, createdAt, UpdatedAt, DeletedAt)
+    static create (id: string, username: string, email: string, password: string, isAdmin: boolean, createdAt: Date, updatedAt: Date, deletedAt: Date): User {
+        return new User(id, username, email, password, isAdmin, createdAt, updatedAt, deletedAt)
     }
 
     update (username: string): User {
         return new User(
             this.id,
-            this.username,
+            username,
             this.email,
             this.password,
             this.isAdmin,
             this.createdAt,
             new Date(),
-            this.DeletedAt
+            this.deletedAt
         )
     }
-
-    
+ 
 
 }
 

@@ -14,4 +14,8 @@ export class userHelper extends Helper<User> {
         return (await this.getRepository()).findOneBy({id})
     }
 
+    async persist (user: User): Promise<void> {
+        (await this.getRepository()).save(user)
+    }
 }
+
