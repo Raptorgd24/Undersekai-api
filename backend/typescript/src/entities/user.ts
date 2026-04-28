@@ -4,34 +4,47 @@ import { Entity } from "./entity"
 export class User implements Entity {
     constructor(
         readonly id: string,
-        readonly nom: string,
-        readonly cognom: string,
+        readonly username: string,
         readonly email: string,
-        readonly password: string
+        readonly password: string,
+        readonly isAdmin: boolean,
+        readonly createdAt: Date,
+        readonly UpdatedAt: Date,
+        readonly DeletedAt: Date
     ) {}
 
     getPrimitive () {
         return {
             id: this.id,
-            nom: this.nom,
-            cognom: this.cognom,
+            nom: this.username,
             email: this.email,
-            password: this.password
+            password: this.password,
+            isAdmin: this.isAdmin,
+           createdAt: this.createdAt,
+           UpdatedAt: this.UpdatedAt
         }
     }
 
-    static create (id: string, nom: string, cognom: string, email: string, password: string): User {
-        return new User(id, nom, cognom, email, password)
+    static create (id: string, username: string, email: string, password: string, isAdmin: boolean, createdAt: Date, UpdatedAt: Date, DeletedAt: Date): User {
+        return new User(id, username, email, password, isAdmin, createdAt, UpdatedAt, DeletedAt)
     }
 
-    update (nom: string, cognom: string): User {
+    update (username: string): User {
         return new User(
             this.id,
-            nom,
-            cognom,
+            this.username,
             this.email,
-            this.password
+            this.password,
+            this.isAdmin,
+            this.createdAt,
+            new Date(),
+            this.DeletedAt
         )
     }
 
+    
+
 }
+
+// preguntar sobre tema de entitats de projecte (que es el que volem i com ho orientem)
+// config docker i DBeaver
