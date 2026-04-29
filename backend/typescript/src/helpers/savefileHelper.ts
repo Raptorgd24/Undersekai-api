@@ -1,15 +1,17 @@
 import { Helper } from "./helper";
-import { UserModel } from "../model/user.model";
+import { SaveFileModel } from "../model/savefile.model";
 import { EntitySchema } from "typeorm";
+import { SaveFile } from "../entities/savefile";
 
 
-export class SavefileHelper extends Helper<Savefile> {
+
+export class SavefileHelper extends Helper<SaveFile> {
     
-    getEntitySchema(): EntitySchema<Savefile> {
-        return UserModel
+    getEntitySchema(): EntitySchema<SaveFile> {
+        return SaveFileModel
     }
 
-    async getLeaderboard (): Promise<Savefile[] | []> {
+    async getLeaderboard (): Promise<SaveFile[] | []> {
         return (await this.getRepository()).query('SELECT * FROM savefile ORDER BY score ASC LIMIT 15')
     }
 

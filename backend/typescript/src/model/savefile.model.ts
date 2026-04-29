@@ -1,26 +1,26 @@
 import { EntitySchema } from "typeorm"
-import { User } from "../entities/user"
+import { SaveFile } from "../entities/savefile"
 
-export const UserModel = new EntitySchema<User>({
-    name: "user",
-    tableName: "user",
-    target: User,
+export const SaveFileModel = new EntitySchema<SaveFile>({
+    name: "savefile",
+    tableName: "savefile",
+    target: SaveFile,
     columns: {
         id: {
             type: String,
             primary: true
         },
-        username: {
+        userId: {
             type: String
         },
-        email: {
+        charaName: {
             type: String
         },
-        password: {
+        playTime: {
             type: String
         },
-        isAdmin: {
-            type: Boolean
+        route: {
+            type: Number
         },
         createdAt: {
             type: Date
