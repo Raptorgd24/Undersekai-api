@@ -1,20 +1,4 @@
 services:
-  app:
-    image: node:20
-    working_dir: /app
-    volumes:
-      - .:/app
-    environment:
-      DB_HOST: db
-      DB_PORT: 5432
-      DB_NAME: undersekai_db
-      DB_USER: postgres
-      DB_PASS: loleslol24
-    depends_on:
-      - db
-    networks:
-      - app-network
-
   db:
     image: postgres:17.5
     ports:
@@ -24,10 +8,4 @@ services:
       POSTGRES_PASSWORD: loleslol24
       POSTGRES_DB: undersekai_db
     volumes:
-      - ./data:/var/lib/postgresql/data :Z
-    networks:
-      - app-network
-
-networks:
-  app-network:
-    driver: bridge
+      - ./data:/var/lib/postgresql/data
