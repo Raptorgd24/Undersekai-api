@@ -1,8 +1,8 @@
 import { EntitySchema } from "typeorm"
-import { SaveFile } from "../entities/savefile"
+import { SaveFile,Route } from "../entities/savefile"
 
 export const SaveFileModel = new EntitySchema<SaveFile>({
-    name: "savefile",
+    name: "SaveFile",
     tableName: "savefile",
     target: SaveFile,
     columns: {
@@ -20,7 +20,8 @@ export const SaveFileModel = new EntitySchema<SaveFile>({
             type: String
         },
         route: {
-            type: Number
+            type: "enum",
+            enum: Route,
         },
         createdAt: {
             type: Date
@@ -29,7 +30,8 @@ export const SaveFileModel = new EntitySchema<SaveFile>({
             type: Date
         },
         deletedAt: {
-            type: Date
+            type: Date,
+            nullable: true
         }
     }
 })

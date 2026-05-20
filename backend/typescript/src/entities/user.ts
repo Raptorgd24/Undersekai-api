@@ -8,31 +8,52 @@ export class User implements Entity {
         readonly email: string,
         readonly password: string,
         readonly isAdmin: boolean,
-        readonly createdAt: Date,
-        readonly updatedAt: Date,
-        readonly deletedAt: Date
+        readonly CreatedAt: Date,
+        readonly UpdatedAt: Date,
+        readonly DeletedAt: Date|null
     ) {}
 
-
-    static create (id: string, username: string, email: string, password: string, isAdmin: boolean, createdAt: Date, updatedAt: Date, deletedAt: Date): User {
-        return new User(id, username, email, password, isAdmin, createdAt, updatedAt, deletedAt)
+    getPrimitive () {
+        return {
+            id: this.id,
+            username: this.username,
+            email: this.email,
+            password: this.password,
+            isAdmin: this.isAdmin,
+            CreatedAt: this.CreatedAt,
+            UpdatedAt: this.UpdatedAt,
+            DeletedAt: this.DeletedAt
+        }
     }
 
-    update (username: string): User {
+    static create (id: string, username: string, email: string, password: string, isAdmin: boolean, CreatedAt: Date, UpdatedAt: Date, DeletedAt: Date|null): User {
+        return new User(id, username, email, password, isAdmin, CreatedAt, UpdatedAt, DeletedAt)
+    }
+
+    update (password: string): User {
         return new User(
             this.id,
-            username,
+            this.username,
+            this.email,
+            password,
+            this.isAdmin,
+            this.CreatedAt,
+            new Date(),
+            this.DeletedAt
+        )
+    }
+
+     delete (): User {
+        return new User(
+            this.id,
+            this.username,
             this.email,
             this.password,
             this.isAdmin,
-            this.createdAt,
-            new Date(),
-            this.deletedAt
+            this.CreatedAt,
+            this.UpdatedAt,
+            new Date()
         )
     }
- 
 
 }
-
-// preguntar sobre tema de entitats de projecte (que es el que volem i com ho orientem)
-// config docker i DBeaver

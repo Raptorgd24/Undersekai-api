@@ -1,5 +1,5 @@
 import type { Request, Response } from "express"
-import { userService } from "../service/userService"
+import { userService } from "../service/user/userService"
 import { userHelper } from "../helpers/userHelper"
 import { UserNotFound } from "../errors/user/userNotFound"
 
@@ -12,8 +12,7 @@ export class GetMeController {
 
             const service = new userService(new userHelper())
             const user = await service.findUserById(userId)
-
-
+            
             return res.status(200).json({
                 ok: true,
                 data: user

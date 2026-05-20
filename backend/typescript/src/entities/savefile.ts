@@ -1,9 +1,12 @@
 import { stat } from "fs"
 import { Entity } from "./entity"
-enum Route {
+
+
+export enum Route {
     PACIFISTA = 'Pacifista',
     GENOCIDA = 'Genocida',
-    NEUTRAL = 'Neutral'
+    NEUTRAL = 'Neutral',
+    FAMA = 'Fama'
     }
     
 export class SaveFile implements Entity {
@@ -15,11 +18,11 @@ export class SaveFile implements Entity {
     readonly route: Route,
     readonly createdAt: Date,
     readonly updatedAt: Date,
-    readonly deletedAt: Date
+    readonly deletedAt: Date|null
     ) {}
 
 
-    static create (id: string, userId: string, charaName: string, playTime: number, route: Route, createdAt: Date, updatedAt: Date, deletedAt: Date): SaveFile {
+    static create (id: string, userId: string, charaName: string, playTime: number, route: Route, createdAt: Date, updatedAt: Date, deletedAt: Date|null): SaveFile {
         return new SaveFile(id, userId, charaName, playTime, route, createdAt, updatedAt, deletedAt)
     }
 

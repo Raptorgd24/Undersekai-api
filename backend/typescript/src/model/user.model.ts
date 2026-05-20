@@ -2,7 +2,7 @@ import { EntitySchema } from "typeorm"
 import { User } from "../entities/user"
 
 export const UserModel = new EntitySchema<User>({
-    name: "user",
+    name: "User",
     tableName: "user",
     target: User,
     columns: {
@@ -22,14 +22,15 @@ export const UserModel = new EntitySchema<User>({
         isAdmin: {
             type: Boolean
         },
-        createdAt: {
+        CreatedAt: {
             type: Date
         },
-        updatedAt: {
+        UpdatedAt: {
             type: Date
         },
-        deletedAt: {
-            type: Date
+        DeletedAt: {
+            type: Date,
+            nullable: true
         }
     }
 })

@@ -1,6 +1,5 @@
 import jwt from "jsonwebtoken"
 
- 
  type TokenData = {
     sub: string
  }

@@ -10,24 +10,36 @@ export class userHelper extends Helper<User> {
         return UserModel
     }
 
-    // Busca un usuario por su ID único
     async findUserById (id: string): Promise<User | null> {
         return (await this.getRepository()).findOneBy({id})
     }
 
-    // Busca un usuario por email (usado para login)
-    async findByEmail (email: string): Promise<User | null> {
+    async createUser (user: User): Promise<void> {
+        await (await this.getRepository()).save(user.getPrimitive())
+    }
+
+    async updateUser (user: User): Promise<void> {
+        await (await this.getRepository()).save(user.getPrimitive())
+    }
+
+    async findUserByEmail (email: string): Promise<User | null> {
         return (await this.getRepository()).findOneBy({email})
     }
-
-    // Busca un usuario por username
-    async findByUsername (username: string): Promise<User | null> {
-        return (await this.getRepository()).findOneBy({username})
+    async updateUserPassword (id: string, newPassword: string): Promise<void> {
+        const user = await this.findUserById(id);
+        if (!user) {
+            throw new Error(`usuari amb id ${id} no es troba`)
+        }
+        const updatedUser = user.update(newPassword);
+        await this.updateUser(updatedUser);
     }
-
-    // Guarda un usuario en la base de datos
-    async persist (user: User): Promise<void> {
-        await (await this.getRepository()).save(user)
+    async deleteUser (id: string): Promise<void> {
+        const user = await this.findUserById(id);
+        if (!user) {
+            throw new Error(`usuari amb id ${id} no es troba`)
+        }
+        const deletedUser = user.delete();
+        await this.updateUser(deletedUser);
     }
 }
 
