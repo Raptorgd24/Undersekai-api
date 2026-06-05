@@ -3,9 +3,10 @@ import { SavefileHelper } from "../helpers/savefileHelper"
 import { savefileService } from "../service/savefileService"
 
 export class CreateSavefileController {
-
+    
     async run (req: Request, res: Response): Promise<Response> {
         try {
+            
             const userId = res.locals.userId
             const { charaName, playTime, route } = req.body
 
@@ -16,7 +17,7 @@ export class CreateSavefileController {
             const service = new savefileService(new SavefileHelper())
             await service.create(userId, charaName, playTime, route)
 
-            return res.status(201).json({ ok: true, message: "Partida guardada" })
+            return res.status(201).json({ ok: true, message: "Partida guardada en db" })
 
         } catch(e) {
             console.error("savefile error:", e)

@@ -4,6 +4,7 @@ import { TokenManager } from "../service/tokenManagerService";
 import { Request, Response } from "express";
 export class getUserLoginController {
     async run (req: Request, res: Response): Promise<Response> {
+        console.log('body', req.body);
         try {
             const { email, password } = req.body;
             const service = new userService(new userHelper());

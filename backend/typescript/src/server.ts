@@ -16,12 +16,16 @@ export class Server {
        })
     }
 
-    private registerRoutes () {
-        this.app.use(registerRoutes())
-    }
+   private registerMiddlewares () {
+    this.app.use(cors({
+        origin: 'http://localhost:3001',
+        methods: ['GET', 'POST', 'PATCH', 'DELETE', 'OPTIONS'],
+        allowedHeaders: ['Content-Type'],
+    }))
+    this.app.use(json())
+}
 
-    private registerMiddlewares () {
-        this.app.use(cors())
-        this.app.use(json())
-    }
+private registerRoutes () {
+    this.app.use(registerRoutes())
+}
 }

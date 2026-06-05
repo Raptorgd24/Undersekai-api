@@ -12,7 +12,7 @@ export class SavefileHelper extends Helper<SaveFile> {
     }
 
    async getLeaderboard (): Promise<SaveFile[] | []> {
-    return (await this.getRepository()).query('SELECT * FROM savefile ORDER BY playTime ASC LIMIT 15')
+    return (await this.getRepository()).query('SELECT * FROM savefile ORDER BY "playTime" ASC LIMIT 15')
 }
 
 }
