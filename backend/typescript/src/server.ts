@@ -23,12 +23,10 @@ public registerMiddlewares() {
             'https://undersekai-api.vercel.app',
             'https://undersekai-8ejq.vercel.app'
         ],
-        methods: ['GET', 'POST', 'PATCH, DELETE', 'OPTIONS'],
+        methods: ['GET', 'POST', 'PATCH', 'DELETE', 'OPTIONS'],
         allowedHeaders: ['Content-Type'],
-        optionsSuccessStatus: 200 
+        optionsSuccessStatus: 200
     }
-
-    this.app.options('*', cors(corsOptions))
     this.app.use(cors(corsOptions))
     this.app.use(json())
 }
