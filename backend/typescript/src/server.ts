@@ -18,7 +18,9 @@ export class Server {
 
    private registerMiddlewares () {
     this.app.use(cors({
-        origin: 'http://localhost:3001',
+        origin: ['http://localhost:3001',
+            'https://undersekai-api.vercel.app'
+        ],
         methods: ['GET', 'POST', 'PATCH', 'DELETE', 'OPTIONS'],
         allowedHeaders: ['Content-Type'],
     }))
