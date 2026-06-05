@@ -16,18 +16,21 @@ export class Server {
         })
     }
 
-    public registerMiddlewares() {
-        this.app.options('*', cors())
-        this.app.use(cors({
-            origin: ['http://localhost:3001',
-                'https://undersekai-api.vercel.app',
-                'https://undersekai-8ejq.vercel.app'
-            ],
-            methods: ['GET', 'POST', 'PATCH', 'DELETE', 'OPTIONS'],
-            allowedHeaders: ['Content-Type'],
-        }))
-        this.app.use(json())
+   public registerMiddlewares() {
+    const corsOptions = {
+        origin: [
+            'http://localhost:3001',
+            'https://undersekai-api.vercel.app',
+            'https://undersekai-8ejq.vercel.app'
+        ],
+        methods: ['GET', 'POST', 'PATCH', 'DELETE', 'OPTIONS'],
+        allowedHeaders: ['Content-Type'],
     }
+
+    this.app.options('*', cors(corsOptions))
+    this.app.use(cors(corsOptions))
+    this.app.use(json())
+}
 
     public registerRoutes() {
         this.app.use(registerRoutes())
