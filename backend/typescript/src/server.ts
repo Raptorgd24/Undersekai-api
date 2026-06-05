@@ -16,15 +16,16 @@ export class Server {
         })
     }
 
-   public registerMiddlewares() {
+public registerMiddlewares() {
     const corsOptions = {
         origin: [
             'http://localhost:3001',
             'https://undersekai-api.vercel.app',
             'https://undersekai-8ejq.vercel.app'
         ],
-        methods: ['GET', 'POST', 'PATCH', 'DELETE', 'OPTIONS'],
+        methods: ['GET', 'POST', 'PATCH, DELETE', 'OPTIONS'],
         allowedHeaders: ['Content-Type'],
+        optionsSuccessStatus: 200 
     }
 
     this.app.options('*', cors(corsOptions))
