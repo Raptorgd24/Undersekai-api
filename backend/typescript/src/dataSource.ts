@@ -10,6 +10,8 @@ export default new DataSource({
     username: process.env.DB_USER as string,
     password: process.env.DB_PASS as string,
     database: process.env.DB_NAME as string,
+    ssl: { rejectUnauthorized: false },
+    synchronize: true,
     entities: [UserModel, SaveFileModel],
     migrations: ["persistence/*.js"]
 })
