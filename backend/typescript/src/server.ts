@@ -30,4 +30,7 @@ export class Server {
 private registerRoutes () {
     this.app.use(registerRoutes())
 }
+getApp() {
+  return this.app
+}
 }
